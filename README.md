@@ -34,3 +34,22 @@
 * **不支持 css：** 意味着当 `HTML` 和 `JavaScript` 组件化时，`CSS` 明显被遗漏
 * **没有构建步骤：** 限制只能使用 `HTML` 和 `ES5 JavaScript`，而不能使用预处理器，如 `Pug(formerly Jade)` 和 `Bable`
 
+## Vue CLI
+
+* npm install -g @vue/cli
+* vue create Vue-Study
+* cd Vue-Study
+* npm run serve
+
+## 组件的概念
+
+小型的、独立的、可以复用的`UI`模块
+
+### 三大核心概念
+
+* 属性
+  * 自定义属性 `props`, 组件`props`中声明的属性
+  * 原生属性 `attrs`, 没有声明的属性，默认自动挂载到组件根元素上，设置 `inheritAttrs` 为 `false` 可以关闭自动挂载
+  * 特殊属性 `class`、`style`, 挂载到组件根元素上，支持字符串、对象、数组等多种语法
+* 事件
+* 插槽
