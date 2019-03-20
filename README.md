@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: MARS
- * @Last Modified time: 2019-03-18 22:39:09
+ * @Last Modified time: 2019-03-20 22:41:00
  */
 # Vue 开发实践
 
@@ -55,3 +55,63 @@
   * 普通事件 `@click`、`@input`、`@change`等事件，通过`this.$emit('xxx', ...)` 触发
   * 修饰符事件 `@input.trim`、`@click.stop`、`@submit.prevent`等，一般用于原生`HTML`元素，自定义组件需要自行开发支持
 * 插槽
+
+## 生命周期
+
+生命周期函数就是 vue 实例在某一个时间点会自动执行的函数
+
+```html
+  <div id="app"></div>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      template: `<h1>{{ msg }}</h1>`,
+      data: {
+        msg: 'Hello World!'
+      },
+      /**
+       * 检测是否有 el 属性
+       * 检测是否有 template 属性，
+       * 如果有 template 模板属性，就会用模板去渲染；
+       * 如果没有 template 模板，就会把 el 外层的 HTML 当做模板去渲染
+       */
+      beforeCreate() {
+        console.log('beforeCreate')
+        // 在 new Vue() 实例之前会执行beforeCreate方法
+      },
+      created() {
+        console.log('created')
+      },
+      beforeMount() {
+        console.log(this.$el)
+        // <div id="app"></div>
+        // 在 beforeMount 的时候，数据并没有被渲染到页面上
+        console.log('beforeMount')
+      },
+      mounted() {
+        console.log(this.$el)
+        // <h1>Hello World!</div>
+        // mounted 的时候，数据已经渲染到页面之上
+        console.log('mounted')
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate')
+        // 当数据发生改变是执行
+      },
+      updated() {
+        console.log('updated')
+        // 数据改变完成之后执行
+      },
+      beforeDestroy() {
+        console.log('beforedestroy')
+        // 数据销毁前执行
+      },
+      destroyed() {
+        console.log('destroyed')
+        // 数据销毁完毕，over
+      },
+    })
+  </script>
+```
+
+**`Vue` 的生命周期函数，并不放在 `methods`里面，而是放在`Vue`实例里**
