@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-03-21 13:13:31
+ * @Last Modified time: 2019-03-21 13:55:43
  */
 # Vue 开发实践
 
@@ -117,3 +117,101 @@
 **`Vue` 的生命周期函数，并不放在 `methods`里面，而是放在`Vue`实例里**
 
 ## `Vue` 模板语法
+
+* `{{ message }}` 插值表达式 = `v-text`
+*  `v-html` 会将`HTML`模板编译为DOM
+
+## 计算属性，方法，侦听器
+
+* **`computed`**
+
+```html
+<div id="app">
+    <h1>{{ fullname }}</h1>
+    <h2>{{ age }}</h2>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            firstname: 'Wong',
+            lastname: 'MARS',
+            age: 23
+        },
+        // 计算属性
+        // 内部存在缓存机制
+        // 改变属性不会重新计算
+        // 性能较高
+        computed: {
+            fullname: function () {
+                console.log('计算了一次')
+                return this.firstname + ' ' + this.lastname
+            }
+        }
+    })
+</script>
+```
+
+* **`methods`**
+
+```html
+<div id="app">
+    <h1>{{ fullname() }}</h1>
+    <!-- 
+      {{ fullname() }}  
+      调用fullname 方法
+    -->
+    <h2>{{ age }}</h2>
+</div>
+<script>
+  let vm = new Vue({
+      el: '#app',
+      data: {
+          firstname: 'Wong',
+          lastname: 'MARS',
+          age: 23
+      },
+      // 方法
+      // 方法，内部没有缓存机制
+      // 如果改变了一次属性，会重新计算一次
+      // 性能较低
+      methods: {
+          fullname: function () {
+              console.log('计算了一次')
+              return this.firstname + ' ' + this.lastname
+          }
+      }
+  })
+</script>
+```
+
+* **`watch`**
+
+```html
+<div id="app">
+    <h1>{{ fullname }}</h1>
+    <h2>{{ age }}</h2>
+</div>
+<script>
+  let vm = new Vue({
+      el: '#app',
+      data: {
+          firstname: 'Wong',
+          lastname: 'MARS',
+          fullname: "Wong MARS",
+          age: 23
+      },
+      // 相对复杂
+      watch: {
+          firstname: function () {
+              console.log('侦听到一次 firstname')
+              this.fullname = this.firstname + ' ' + this.lastname
+          },
+          lastname: function () {
+              console.log('侦听到一次 lastname')
+              this.fullname = this.firstname + ' ' + this.lastname
+          }
+      }
+  })
+</script>
+```

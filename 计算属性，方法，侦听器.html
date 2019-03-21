@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性，方法，侦听器</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ fullname }}</h1>
+        <h2>{{ age }}</h2>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                firstname: 'Wong',
+                lastname: 'MARS',
+                fullname: "Wong MARS",
+                age: 23
+            },
+            // 计算属性
+            // 内部存在缓存机制
+            // 改变属性不会重新计算
+            // 性能较高
+            // computed: {
+            //     fullname: function () {
+            //         console.log('计算了一次')
+            //         return this.firstname + ' ' + this.lastname
+            //     }
+            // },
+
+            // 方法
+            // 方法，内部没有缓存机制
+            // 如果改变了一次属性，会重新计算一次
+            // methods: {
+            //     fullname: function () {
+            //         console.log('计算了一次')
+            //         return this.firstname + ' ' + this.lastname
+            //     }
+            // },
+
+            watch: {
+                firstname: function () {
+                    console.log('侦听到一次 firstname')
+                    this.fullname = this.firstname + ' ' + this.lastname
+                },
+                lastname: function () {
+                    console.log('侦听到一次 lastname')
+                    this.fullname = this.firstname + ' ' + this.lastname
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
