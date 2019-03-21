@@ -1,8 +1,8 @@
 /*
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
- * @Last Modified by: MARS
- * @Last Modified time: 2019-03-20 22:41:00
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-03-21 12:54:42
  */
 # Vue 开发实践
 
@@ -115,3 +115,4 @@
 ```
 
 **`Vue` 的生命周期函数，并不放在 `methods`里面，而是放在`Vue`实例里**
+
