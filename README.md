@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-03-21 14:43:58
+ * @Last Modified time: 2019-03-21 16:46:11
  */
 # Vue 开发实践
 
@@ -311,3 +311,29 @@
 ```
 
 ## 条件渲染
+
+```html
+<!-- 
+    给每个 input 加 key 值，不会复用其中的内容
+ -->
+<div id="app">
+    <div v-if="show">
+        用户：<input v-model="msg" key="username" type="text">
+        <h1>Message is:{{ msg }}</h1>
+    </div>
+    <div v-else>
+        邮箱：<input v-model="msg1" key="pwd" type="text">
+        <h1>Message is:{{ msg1 }}</h1>
+    </div>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '',
+            msg1: '',
+            show: false
+        }
+    })
+</script>
+```

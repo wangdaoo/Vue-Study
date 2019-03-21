@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="show">
+            用户：<input v-model="msg" key="username" type="text">
+            <h1>Message is:{{ msg }}</h1>
+        </div>
+        <div v-else>
+            邮箱：<input v-model="msg1" key="pwd" type="text">
+            <h1>Message is:{{ msg1 }}</h1>
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                msg1: '',
+                show: false
+            }
+        })
+    </script>
+</body>
+
+</html>
