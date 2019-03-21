@@ -11,11 +11,25 @@
 
 <body>
     <div id="app">
-        
+        <div v-if='show'>{{ msg }}</div>
+        <div v-else>Bye World</div>
+        <!-- <div v-show='show'>{{ msg }}</div> -->
+        <!-- 
+            v-if:
+                DOM 被移除
+                性能相对较低
+            v-show:
+                切换 display 的属性值
+                DOM 并没有被移除
+         -->
     </div>
     <script>
         let vm = new Vue({
             el: '#app',
+            data: {
+                show: true,
+                msg: 'Hello World'
+            }
         })
     </script>
 </body>
