@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插槽</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <h2 class="header" slot="header">Header</h2>
+            <h2 class="footer" slot="footer">Footer</h2>
+        </child>
+    </div>
+    <script>
+        // <code>default Header</code>
+        // 默认值  如果上面 DOM 结构中没有引入 slot 就会显示 defalut Header 默认值
+
+        Vue.component('child', {
+            template: `
+                <div>
+                    <slot name="header">
+                        <code>default Header</code>    
+                    </slot>
+                    <h1 class="content">Content</h1>
+                    <slot name="footer"></slot>
+                </div>
+            `
+        })
+        let vm = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

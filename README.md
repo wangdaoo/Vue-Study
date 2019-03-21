@@ -400,3 +400,39 @@
     })
 </script>
 ```
+
+## 插槽 `slot`
+
+```html
+<!-- 
+    slot 
+        在模板内插入 slot 
+        如果有很多 slot ，就需要给 slot 一个 name 属性，避免 slot 被重复使用
+
+        这种语法叫做具名插槽，给每个 slot 起一个名字
+ -->
+<div id="app">
+    <child>
+        <h2 class="header" slot="header">Header</h2>
+        <h2 class="footer" slot="footer">Footer</h2>
+    </child>
+</div>
+<script>
+    Vue.component('child', {
+        template: `
+            <div>
+                <slot name="header">
+                    <code>default Header</code>
+                </slot>
+                <h1 class="content">Content</h1>
+                <slot name="footer"></slot>
+            </div>
+        `
+        // <code>default Header</code>
+        // 默认值  如果上面 DOM 结构中没有引入 slot 就会显示 defalut Header 默认值
+    })
+    let vm = new Vue({
+        el: '#app'
+    })
+</script>
+```
