@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-03-21 14:11:51
+ * @Last Modified time: 2019-03-21 14:40:15
  */
 # Vue 开发实践
 
@@ -247,3 +247,66 @@
     })
 </script>
 ```
+
+## 样式绑定
+
+样式绑定都有两种方式进行
+
+- 对象
+- 数组
+
+```html
+<!-- 通过 class 进行绑定样式 -->
+
+<style>
+    .actived {
+        color: red;
+    }
+</style>
+
+<div id="app">
+    <div @click="handleClick" :class="{actived : isactiveed}">Hello World</div>
+</div>
+
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isactiveed: false
+        },
+        methods: {
+            handleClick: function () {
+                this.isactiveed = !this.isactiveed
+                // 取反
+            }
+        },
+    })
+</script>
+```
+
+```html
+<!-- 通过 style 方式进行样式绑定 -->
+
+<div id="app">
+    <div :style="[styleObj]" @click="handleClick">Hello World</div>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            styleObj: {
+                color: 'black',
+                fontSize: '20px'
+            }
+        },
+        methods: {
+            handleClick: function () {
+                this.styleObj.color = this.styleObj.color === 'black' ? 'red' : 'black'
+
+                this.styleObj.fontSize = this.styleObj.fontSize === '20px' ? '30px' : '20px'
+            }
+        },
+    })
+</script>
+```
+
