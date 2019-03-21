@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-03-21 13:55:43
+ * @Last Modified time: 2019-03-21 14:11:51
  */
 # Vue 开发实践
 
@@ -213,5 +213,37 @@
           }
       }
   })
+</script>
+```
+
+## `getter , setter`
+
+```html
+<div id="app">
+    {{ fullname }}
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            firstname: 'Wong',
+            lastname: 'MARS'
+        },
+        computed: {
+            fullname: {
+                get: function () {
+                    // 读取属性
+                    return this.firstname + ' ' + this.lastname
+                },
+                set: function (value) {
+                    // 设值属性
+                    console.log(value)
+                    var arr = value.split(" ")
+                    this.firstname = arr[0]
+                    this.lastname = arr[1]
+                }
+            }
+        },
+    })
 </script>
 ```
