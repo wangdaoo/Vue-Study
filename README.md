@@ -2,7 +2,7 @@
  * @Author: MARS 
  * @Date: 2019-03-18 21:43:39 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-03-21 16:46:11
+ * @Last Modified time: 2019-03-21 20:03:27
  */
 # Vue 开发实践
 
@@ -333,6 +333,69 @@
             msg: '',
             msg1: '',
             show: false
+        }
+    })
+</script>
+```
+
+## 父子组件传值
+
+```html
+<!-- 
+    父组件通过属性的形式向子组件进行传值
+    
+    子组件通过事件触发向子组件传值
+
+    父组件可以向子组件传递任何数据，但是子组件不能修改父组件传递过来的数据
+
+    如果必须要修改父组件数据，就需要copy一个副本出来
+ -->
+
+<div id="app">
+    <!-- 子组件向父组件传值 -->
+    <counter :count='0' @inc="handleIncrease"></counter>
+    <counter :count='1' @inc="handleIncrease"></counter>
+
+    <!-- 父组件向子组件传值 -->
+    <h1>{{ total }}</h1>
+</div>
+<script>
+    let counter = {
+        props: ['count'],
+
+        // -----------------------
+        // 子组件修改父组件传递的数据，copy 一个副本出来
+        data: function () {
+            return {
+                number: this.count
+            }
+        },
+        // -----------------------
+        
+        template: `<h1 @click="handleClick">
+            {{ number }}
+        </h1>`,
+        methods: {
+            handleClick: function () {
+                this.number = this.number + 2
+                this.$emit('inc', 2)
+            }
+        },
+    }
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            total: 1
+        },
+        components: {
+            counter: counter
+        },
+        methods: {
+            handleIncrease: function (step) {
+                console.log('inc')
+                this.total += step
+            }
         }
     })
 </script>

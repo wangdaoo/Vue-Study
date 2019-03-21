@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 子组件向父组件传值 -->
+        <counter :count='0' @inc="handleIncrease"></counter>
+        <counter :count='1' @inc="handleIncrease"></counter>
+
+        <!-- 父组件向子组件传值 -->
+        <h1>{{ total }}</h1>
+    </div>
+    <script>
+        let counter = {
+            props: ['count'],
+            data: function () {
+                return {
+                    number: this.count
+                }
+            },
+            template: `<h1 @click="handleClick">
+                {{ number }}
+            </h1>`,
+            methods: {
+                handleClick: function () {
+                    this.number = this.number + 2
+                    this.$emit('inc', 2)
+                }
+            },
+        }
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                total: 1
+            },
+            components: {
+                counter: counter
+            },
+            methods: {
+                handleIncrease: function (step) {
+                    console.log('inc')
+                    this.total += step
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
