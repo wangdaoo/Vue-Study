@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>给组件绑定原生事件</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 绑定 native 原生事件, 可以执行 -->
+        <child @click.native="handleClick"></child>
+
+        <!-- 正常的点击事件不会触发事件 -->
+        <!-- <child @click="handleClick"></child> -->
+    </div>
+    <script>
+        Vue.component('child', {
+            template: `<button>Child</button>`
+        })
+        let vm = new Vue({
+            el: '#app',
+            methods: {
+                handleClick: function () {
+                    alert('给组件绑定原生事件')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
