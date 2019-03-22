@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <!-- 引入animate.css -->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 
+            transition 过渡动画原理
+            <transition name="fade">
+            如果有 name style 样式就用 name 加动画过渡效果，例如：fade-enter ...
+         -->
+        <!-- 
+            使用 animate.css 库，必须注意
+            1. 必须自定义 class 例如：enter-active-class
+            2. class 中必须有 animated 这个 class 
+          -->
+        <transition enter-active-class="animated swing" leave-active-class="animated shake">
+            <div v-if='show'>Hello World</div>
+        </transition>
+        <button @click='handleClick'>BUTTON</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
