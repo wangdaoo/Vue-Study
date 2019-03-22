@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <component :is="type"></component>
+        <button @click="handleBtnClick">BUTTON</button>
+    </div>
+    <script>
+        Vue.component('child-one', {
+                template: `<h1>Child-One</h1>`
+            }),
+            Vue.component('child-two', {
+                template: `<h1>Child-two</h1>`
+            })
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                type: 'child-one'
+            },
+            methods: {
+                // 三元运算
+                handleBtnClick: function () {
+                    this.type = this.type === 'child-one' ? 'child-two' : 'child-one'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
