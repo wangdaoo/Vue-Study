@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <!-- 引入animate.css -->
     <script src="./vue.js"></script>
+    <style>
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,10 +34,11 @@
             1. 必须自定义 class 例如：enter-active-class
             2. class 中必须有 animated 这个 class 
           -->
-        <transition enter-active-class="animated swing" leave-active-class="animated shake">
+        <transition appear type="transition" enter-active-class="animated swing fade-enter-active"
+            leave-active-class="animated shake fade-leave-active" appear-active-class="animated jackInTheBox">
             <div v-if='show'>Hello World</div>
         </transition>
-        <button @click='handleClick'>BUTTON</button>
+        <button @click="show = !show">BUTTON</button>
     </div>
     <script>
         let vm = new Vue({
@@ -34,11 +46,11 @@
             data: {
                 show: true
             },
-            methods: {
-                handleClick: function () {
-                    this.show = !this.show
-                }
-            },
+            // methods: {
+            //     handleClick: function () {
+            //         this.show = !this.show
+            //     }
+            // },
         })
     </script>
 </body>
