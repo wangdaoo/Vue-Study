@@ -6,9 +6,17 @@
 
 <script>
 export default {
-    el: 'servers',
-    data: {
-        msg: 'Hello Mars'
-    }
-}
+  name: "servers",
+  data() {
+    return {
+      msg: "Hello Mars"
+    };
+  }
+};
 </script>
+
+<style scoped>
+.servers {
+  color: #cccccc;
+}
+</style>
